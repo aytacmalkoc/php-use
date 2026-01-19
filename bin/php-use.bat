@@ -1,7 +1,7 @@
 @echo off
 
-REM Add C:\php-switcher folder to PATH (if not already added)
-powershell -Command "$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentPath -notlike '*C:\php-switcher*') { $newPath = $currentPath + ';C:\php-switcher'; [Environment]::SetEnvironmentVariable('Path', $newPath, 'User'); Write-Host 'C:\php-switcher added to PATH.' } else { Write-Host 'C:\php-switcher is already in PATH.' }"
+REM Add C:\php-use\bin folder to PATH (if not already added)
+powershell -Command "$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentPath -notlike '*C:\php-use\bin*') { $newPath = $currentPath + ';C:\php-use\bin'; [Environment]::SetEnvironmentVariable('Path', $newPath, 'User'); Write-Host 'C:\php-use\bin added to PATH.' } else { Write-Host 'C:\php-use\bin is already in PATH.' }"
 
 SET PHP_73=C:\laragon\bin\php\php-7.3.33-nts-Win32-VC15-x64
 SET PHP_82=C:\laragon\bin\php\php-8.2.27-nts-Win32-vs16-x64
