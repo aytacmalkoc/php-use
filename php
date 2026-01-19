@@ -1,0 +1,24 @@
+#!/bin/bash
+# PHP wrapper script for Git Bash
+# Reads PHP_PATH from Windows environment variable and executes php.exe
+
+# Read PHP_PATH from Windows environment variable
+PHP_PATH=$(powershell.exe -Command "[System.Environment]::GetEnvironmentVariable('PHP_PATH','User')" 2>/dev/null | tr -d '\r')
+
+# Check if PHP_PATH is empty or not found
+if [ -z "$PHP_PATH" ]; then
+    echo "Error: PHP_PATH environment variable not found. Please select a PHP version using php-use.bat" >&2
+    exit 1
+fi
+
+# Convert Windows path to Unix path
+PHP_EXE=$(echo "$PHP_PATH" | sed 's|^C:|/c|' | sed 's|\\|/|g')/php.exe
+
+# Check if file exists
+if [ ! -f "$PHP_EXE" ]; then
+    echo "Error: PHP not found: $PHP_EXE" >&2
+    exit 1
+fi
+
+# Execute PHP (forward all arguments)
+exec "$PHP_EXE" "$@"
